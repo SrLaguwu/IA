@@ -10,6 +10,8 @@ def leerArchivo(nombreArchivo):
 
 leerArchivo(nombreArchivo)
 
+
+
 def mostrar_menuInicial():
     print("Selecciona una opción:")
     print("1. Busqueda NO informada")
@@ -45,13 +47,25 @@ while True:
             opcion = seleccionar_opcion()
             if opcion == 1:
                 print("Has seleccionado la opción de Busqueda NO informada por amplitud")
+
+                #funcion de busqueda no informada por amplitud
+
             elif opcion == 2:
                 print("Has seleccionado la opción de Busqueda No Informada de Costo Uniforme")
+
+                #funcion de busqueda no informada por Costo Uniforme
+
             elif opcion == 3:
                 print("Has seleccionado la opción de Busqueda No Informada de Profundidad evitando ciclos")
+
+                #funcion de busqueda no informada por Profundidad evitando ciclos
+
             elif opcion == 4:
                 print("¡Hasta luego!")
                 break
+
+            else:
+                print("Opción no válida, por favor selecciona una opción válida.")
 
 
 
@@ -63,11 +77,20 @@ while True:
             opcion = seleccionar_opcion()
             if opcion == 1:
                 print("Has seleccionado la opción de Busqueda informada Avara")
+
+                #funcion de busqueda informada por Avara
+
             elif opcion == 2:
                 print("Has seleccionado la opción de Busqueda Informada A*")
+
+                #funcion de busqueda informada por A*
+
             elif opcion == 3:
                 print("¡Hasta luego!")
                 break
+
+            else:
+                print("Opción no válida, por favor selecciona una opción válida.")
 
 
 
