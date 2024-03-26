@@ -1,4 +1,4 @@
-nombreArchivo = "/home/andres/Desktop/desarrollo/IA/Taller1/Prueba1.txt"
+nombreArchivo = "C:/Users/eldia/OneDrive/Escritorio/IA/IA/Taller1/Prueba1.txt"
 
 def leerArchivo(nombreArchivo):
     try:
