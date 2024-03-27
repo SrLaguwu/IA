@@ -1,42 +1,56 @@
 from Nodo import Nodo
+import time
 
 matriz_de_nodos = []
 nodo_a_expandir = 0
 
-def expandir(matriz_de_elementos, nodo):
+def verificar_posicion_nodo(nodo, x_, y_):
+    if (nodo == None):
+        return False
+    else:
+        if (nodo.x == x_ and nodo.y == y_):
+            return True
+        else:
+            return False
+
+def expandir(matriz_de_elementos, nodo, evitando_devolverse):
     IndexErrorXD = []
 
     if (nodo.grogu):
         return True
     else:
         try:
+            if (evitando_devolverse == 2):
+                if (verificar_posicion_nodo(nodo.padre, nodo.x + 1, nodo.y)):
+                    IndexErrorXDXD = IndexErrorXD[0]
+
             if (nodo.x + 1 > 9):
                 IndexErrorXDXD = IndexErrorXD[0]
 
-            p = matriz_de_elementos[nodo.y][nodo.x + 1]
+            elemento = matriz_de_elementos[nodo.y][nodo.x + 1]
             grogu_ = nodo.grogu
             nave_ = nodo.nave
             operador_ = "Derecha"
             profundidad_ = nodo.profundidad + 1
             costo_ruta_ = nodo.costo_ruta
 
-            if (p == 0):
+            if (elemento == 0):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 1
 
-            elif (p == 1):
+            elif (elemento == 1):
                 IndexErrorXDXD = IndexErrorXD[0]
-            elif (p == 2):
+            elif (elemento == 2):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 1
 
-            elif (p == 3):
+            elif (elemento == 3):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
@@ -44,14 +58,14 @@ def expandir(matriz_de_elementos, nodo):
                     costo_ruta_ += 1
                 nave_ = 10
 
-            elif (p == 4):
+            elif (elemento == 4):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 5
 
-            elif (p == 5):
+            elif (elemento == 5):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
@@ -66,33 +80,37 @@ def expandir(matriz_de_elementos, nodo):
             # print("¡Error! Índice fuera de rango.")
 
         try:
+            if (evitando_devolverse == 2):
+                if (verificar_posicion_nodo(nodo.padre, nodo.x, nodo.y + 1)):
+                    IndexErrorXDXD = IndexErrorXD[0]
+
             if (nodo.y + 1 > 9):
                 IndexErrorXDXD = IndexErrorXD[0]
                                           
-            p = matriz_de_elementos[nodo.y + 1][nodo.x]
+            elemento = matriz_de_elementos[nodo.y + 1][nodo.x]
             grogu_ = nodo.grogu
             nave_ = nodo.nave
             operador_ = "Abajo"
             profundidad_ = nodo.profundidad + 1
             costo_ruta_ = nodo.costo_ruta
 
-            if (p == 0):
+            if (elemento == 0):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 1
 
-            elif (p == 1):
+            elif (elemento == 1):
                 IndexErrorXDXD = IndexErrorXD[0]
-            elif (p == 2):
+            elif (elemento == 2):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 1
 
-            elif (p == 3):
+            elif (elemento == 3):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
@@ -100,14 +118,14 @@ def expandir(matriz_de_elementos, nodo):
                     costo_ruta_ += 1
                 nave_ = 10
 
-            elif (p == 4):
+            elif (elemento == 4):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 5
 
-            elif (p == 5):
+            elif (elemento == 5):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
@@ -122,33 +140,37 @@ def expandir(matriz_de_elementos, nodo):
             # print("¡Error! Índice fuera de rango.")
 
         try:
+            if (evitando_devolverse == 2):
+                if (verificar_posicion_nodo(nodo.padre, nodo.x, nodo.y - 1)):
+                    IndexErrorXDXD = IndexErrorXD[0]
+
             if (nodo.y - 1 < 0):
                 IndexErrorXDXD = IndexErrorXD[0]
                                           
-            p = matriz_de_elementos[nodo.y - 1][nodo.x]
+            elemento = matriz_de_elementos[nodo.y - 1][nodo.x]
             grogu_ = nodo.grogu
             nave_ = nodo.nave
             operador_ = "Arriba"
             profundidad_ = nodo.profundidad + 1
             costo_ruta_ = nodo.costo_ruta
 
-            if (p == 0):
+            if (elemento == 0):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 1
 
-            elif (p == 1):
+            elif (elemento == 1):
                 IndexErrorXDXD = IndexErrorXD[0]
-            elif (p == 2):
+            elif (elemento == 2):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 1
 
-            elif (p == 3):
+            elif (elemento == 3):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
@@ -156,14 +178,14 @@ def expandir(matriz_de_elementos, nodo):
                     costo_ruta_ += 1
                 nave_ = 10
 
-            elif (p == 4):
+            elif (elemento == 4):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 5
 
-            elif (p == 5):
+            elif (elemento == 5):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
@@ -178,34 +200,38 @@ def expandir(matriz_de_elementos, nodo):
             # print("¡Error! Índice fuera de rango.")
             
         try:
+            if (evitando_devolverse == 2):
+                if (verificar_posicion_nodo(nodo.padre, nodo.x - 1, nodo.y)):
+                    IndexErrorXDXD = IndexErrorXD[0]
+
             if (nodo.x - 1 < 0):
                 IndexErrorXDXD = IndexErrorXD[0]
             # print("ss", nodo.y, nodo.x - 1, IndexErrorXDXD)
 
-            p = matriz_de_elementos[nodo.y][nodo.x - 1]
+            elemento = matriz_de_elementos[nodo.y][nodo.x - 1]
             grogu_ = nodo.grogu
             nave_ = nodo.nave
             operador_ = "Izquierda"
             profundidad_ = nodo.profundidad + 1
             costo_ruta_ = nodo.costo_ruta
 
-            if (p == 0):
+            if (elemento == 0):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 1
 
-            elif (p == 1):
+            elif (elemento == 1):
                 IndexErrorXDXD = IndexErrorXD[0]
-            elif (p == 2):
+            elif (elemento == 2):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 1
 
-            elif (p == 3):
+            elif (elemento == 3):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
@@ -213,14 +239,14 @@ def expandir(matriz_de_elementos, nodo):
                     costo_ruta_ += 1
                 nave_ = 10
 
-            elif (p == 4):
+            elif (elemento == 4):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
                 else:
                     costo_ruta_ += 5
 
-            elif (p == 5):
+            elif (elemento == 5):
                 if (nave_ > 0):
                     nave_ -= 1
                     costo_ruta_ += 0.5
@@ -234,76 +260,11 @@ def expandir(matriz_de_elementos, nodo):
             a = 0
             # print("¡Error! Índice fuera de rango.")
 
-
-        # # # # if (nodo.y > 0 and nodo.x > 0 and nodo.y < 9 and nodo.x < 9):
-        # # # #     if(matriz_de_elementos[nodo.y][nodo.x + 1] != 1):
-        # # # #         print("xd:",matriz_de_elementos[nodo.y][nodo.x + 1])
-        # # # #     elif(matriz_de_elementos[nodo.y + 1][nodo.x] != 1):
-        # # # #         print("xd:", matriz_de_elementos[nodo.y + 1][nodo.x])
-        # # # #     elif(matriz_de_elementos[nodo.y - 1][nodo.x] != 1):
-        # # # #         print("xd:", matriz_de_elementos[nodo.y - 1][nodo.x])
-        # # # #     else:
-        # # # #         print("xd:", matriz_de_elementos[nodo.y][nodo.x - 1])
-
-        # # # # elif (nodo.y == 0 and nodo.x == 0):
-        # # # #     if(matriz_de_elementos[nodo.y][nodo.x + 1] != 1):
-        # # # #         print("xd:",matriz_de_elementos[nodo.y][nodo.x + 1])
-        # # # #     else:
-        # # # #         print("xd:", matriz_de_elementos[nodo.y + 1][nodo.x])
-                
-        # # # # elif (nodo.y == 9 and nodo.x == 9):
-        # # # #     if(matriz_de_elementos[nodo.y - 1][nodo.x] != 1):
-        # # # #         print("xd:",matriz_de_elementos[nodo.y - 1][nodo.x])
-        # # # #     else:
-        # # # #         print("xd:", matriz_de_elementos[nodo.y][nodo.x - 1])
-
-        # # # # elif (nodo.y == 0 and nodo.x == 9):
-        # # # #     if(matriz_de_elementos[nodo.y + 1][nodo.x] != 1):
-        # # # #         print("xd:",matriz_de_elementos[nodo.y + 1][nodo.x])
-        # # # #     else:
-        # # # #         print("xd:", matriz_de_elementos[nodo.y][nodo.x - 1])
-
-        # # # # elif (nodo.y == 9 and nodo.x == 0):
-        # # # #     if(matriz_de_elementos[nodo.y][nodo.x + 1] != 1):
-        # # # #         print("xd:",matriz_de_elementos[nodo.y][nodo.x + 1])
-        # # # #     else:
-        # # # #         print("xd:", matriz_de_elementos[nodo.y - 1][nodo.x])
-
-        # # # # elif (nodo.y == 0):
-        # # # #     if(matriz_de_elementos[nodo.y][nodo.x + 1] != 1):
-        # # # #         print("xd:",matriz_de_elementos[nodo.y][nodo.x + 1])
-        # # # #     elif(matriz_de_elementos[nodo.y + 1][nodo.x] != 1):
-        # # # #         print("xd:", matriz_de_elementos[nodo.y + 1][nodo.x])
-        # # # #     else:
-        # # # #         print("xd:", matriz_de_elementos[nodo.y][nodo.x - 1])
-
-        # # # # elif (nodo.x == 0):
-        # # # #     if(matriz_de_elementos[nodo.y][nodo.x + 1] != 1):
-        # # # #         print("xd:",matriz_de_elementos[nodo.y][nodo.x + 1])
-        # # # #     elif(matriz_de_elementos[nodo.y + 1][nodo.x] != 1):
-        # # # #         print("xd:", matriz_de_elementos[nodo.y + 1][nodo.x])
-        # # # #     else:
-        # # # #         print("xd:", matriz_de_elementos[nodo.y - 1][nodo.x])
-
-        # # # # elif (nodo.y == 9):
-        # # # #     if(matriz_de_elementos[nodo.y][nodo.x + 1] != 1):
-        # # # #         print("xd:",matriz_de_elementos[nodo.y][nodo.x + 1])
-        # # # #     elif(matriz_de_elementos[nodo.y - 1][nodo.x] != 1):
-        # # # #         print("xd:", matriz_de_elementos[nodo.y - 1][nodo.x])
-        # # # #     else:
-        # # # #         print("xd:", matriz_de_elementos[nodo.y][nodo.x - 1])
-
-        # # # # elif (nodo.x == 9):
-        # # # #     if(matriz_de_elementos[nodo.y + 1][nodo.x] != 1):
-        # # # #         print("xd:",matriz_de_elementos[nodo.y + 1][nodo.x])
-        # # # #     elif(matriz_de_elementos[nodo.y - 1][nodo.x] != 1):
-        # # # #         print("xd:", matriz_de_elementos[nodo.y - 1][nodo.x])
-        # # # #     else:
-        # # # #         print("xd:", matriz_de_elementos[nodo.y][nodo.x - 1])
-
         return False
 
-def ejecucion(matriz_de_elementos):
+def ejecutar(matriz_de_elementos, evitando_devolverse):    
+    global matriz_de_nodos
+    global nodo_a_expandir
 
     x_ = 0
     y_ = 0
@@ -313,45 +274,43 @@ def ejecucion(matriz_de_elementos):
                 x_ = x_inicial
                 y_ = y_inicial
 
+    inicio = time.time()
+
     nodo_inicial = Nodo(x_, y_)
 
-    global matriz_de_nodos
     matriz_de_nodos.append(nodo_inicial)
-    global nodo_a_expandir
 
     grogu_encontrado = False
 
-    nodo_meta = 0
-
     while not(grogu_encontrado):
-        grogu_encontrado = expandir(matriz_de_elementos, matriz_de_nodos[nodo_a_expandir])
         print("x:",matriz_de_nodos[nodo_a_expandir].x, "- y:", matriz_de_nodos[nodo_a_expandir].y)
         print(matriz_de_elementos[matriz_de_nodos[nodo_a_expandir].y][matriz_de_nodos[nodo_a_expandir].x])
-        nodo_a_expandir += 1
-        print("len(matriz_de_nodos)", len(matriz_de_nodos))
-        print("nodo_a_expandir", nodo_a_expandir)
+        print("nodo_a_expandir =", nodo_a_expandir)
+        print("len(matriz_de_nodos) =", len(matriz_de_nodos))
         print("==================================================")
         # enter = input("==================================================")
+        grogu_encontrado = expandir(matriz_de_elementos, matriz_de_nodos[nodo_a_expandir], evitando_devolverse)
+        nodo_a_expandir += 1
 
-    for xddd in matriz_de_nodos:
-        print("x:",xddd.x, "- y:", xddd.y, "- p:", xddd.profundidad, "\n")
+    fin = time.time()
+    tiempo_transcurrido = fin - inicio
 
-    print("///")
+    print("==================================================")
 
+    nodos_expandidos = len(matriz_de_nodos)
     nodo_meta = nodo_a_expandir - 1
+
     nodoXD = matriz_de_nodos[nodo_meta]
-
-    while nodoXD.padre != None:
-        print(nodoXD.operador)
+    ruta_encontrada = nodoXD.operador
+    while True:
         nodoXD = nodoXD.padre
+        if (nodoXD.padre == None):
+            break
+        ruta_encontrada = nodoXD.operador + "->" + ruta_encontrada
 
-    # print(nodo_inicial.grogu)
-    # print(nodo_inicial.nave)
-    # print(nodo_inicial.padre)
-    # print(nodo_inicial.operador)
-    # print(nodo_inicial.x)
-    # print(nodo_inicial.y)
-    # print(nodo_inicial.profundidad)
-    # print(nodo_inicial.costo_ruta)
-    # print(nodo_inicial)
-    # print(matriz_de_nodos)
+    print("Nodos expandidos:", nodos_expandidos)
+    print("Profundidad del arbol:", matriz_de_nodos[nodos_expandidos - 1].profundidad)
+    print("Ruta:", ruta_encontrada)
+    print("Costo de la ruta:", matriz_de_nodos[nodo_meta].costo_ruta)
+    print("Tiempo de computo:", tiempo_transcurrido)
+

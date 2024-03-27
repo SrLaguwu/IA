@@ -12,17 +12,3 @@ class Nodo:
         self.profundidad = profundidad
 
         self.costo_ruta = costo_ruta
-
-# Ejemplo de uso:
-# Creamos un nodo inicial
-nodo_inicial = Nodo(2, 3)
-
-# # Creamos un nodo hijo con el nodo inicial como padre
-# nodo_hijo = Nodo(estado=5, padre=nodo_inicial, operador="Derecha", profundidad=1, costo_ruta=10)
-
-# # Imprimimos información del nodo hijo
-# print("Estado:", nodo_hijo.estado)
-# print("Padre:", nodo_hijo.padre.estado if nodo_hijo.padre else None)
-# print("Operador:", nodo_hijo.operador)
-# print("Profundidad:", nodo_hijo.profundidad)
-# print("Costo de Ruta:", nodo_hijo.costo_ruta)

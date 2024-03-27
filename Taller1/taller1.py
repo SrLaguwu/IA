@@ -62,7 +62,11 @@ while programa_en_ejecucion:
                 #funcion de busqueda no informada por amplitud
 
                 print("\nHas seleccionado la opción de Busqueda NO informada por Amplitud")
-                Amplitud.ejecucion(matriz_de_elementos)
+                print("Selecciona una opción:")
+                print("1. NO evitando devolverse")
+                print("2. Evitando devolverse")
+                evitando_devolverse = seleccionar_opcion()
+                Amplitud.ejecutar(matriz_de_elementos, evitando_devolverse)
                 programa_en_ejecucion = False
                 break
 
