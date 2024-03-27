@@ -284,9 +284,9 @@ def ejecutar(matriz_de_elementos, evitando_devolverse):
 
     while not(grogu_encontrado):
         print("x:",matriz_de_nodos[nodo_a_expandir].x, "- y:", matriz_de_nodos[nodo_a_expandir].y)
-        print(matriz_de_elementos[matriz_de_nodos[nodo_a_expandir].y][matriz_de_nodos[nodo_a_expandir].x])
-        print("nodo_a_expandir =", nodo_a_expandir)
-        print("len(matriz_de_nodos) =", len(matriz_de_nodos))
+        print("Elemento encontrado:", matriz_de_elementos[matriz_de_nodos[nodo_a_expandir].y][matriz_de_nodos[nodo_a_expandir].x])
+        print("Nodo a expandir:", nodo_a_expandir)
+        print("Nodos creados:", len(matriz_de_nodos))
         print("==================================================")
         # enter = input("==================================================")
         grogu_encontrado = expandir(matriz_de_elementos, matriz_de_nodos[nodo_a_expandir], evitando_devolverse)
@@ -297,7 +297,7 @@ def ejecutar(matriz_de_elementos, evitando_devolverse):
 
     print("==================================================")
 
-    nodos_expandidos = len(matriz_de_nodos)
+    nodos_creados = len(matriz_de_nodos)
     nodo_meta = nodo_a_expandir - 1
 
     nodoXD = matriz_de_nodos[nodo_meta]
@@ -308,8 +308,8 @@ def ejecutar(matriz_de_elementos, evitando_devolverse):
             break
         ruta_encontrada = nodoXD.operador + "->" + ruta_encontrada
 
-    print("Nodos expandidos:", nodos_expandidos)
-    print("Profundidad del arbol:", matriz_de_nodos[nodos_expandidos - 1].profundidad)
+    print("Nodos expandidos:", nodo_meta)
+    print("Profundidad del arbol:", matriz_de_nodos[nodos_creados - 1].profundidad)
     print("Ruta:", ruta_encontrada)
     print("Costo de la ruta:", matriz_de_nodos[nodo_meta].costo_ruta)
     print("Tiempo de computo:", tiempo_transcurrido)
