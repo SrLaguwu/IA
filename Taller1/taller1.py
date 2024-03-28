@@ -1,4 +1,4 @@
-import Amplitud
+import Amplitud, juegoGrafico
 
 nombreArchivo = "Prueba1.txt"
 
@@ -60,10 +60,23 @@ while programa_en_ejecucion:
             if opcion == 1:
 
                 #funcion de busqueda no informada por amplitud
-
                 print("\nHas seleccionado la opción de Busqueda NO informada por Amplitud")
-                Amplitud.ejecucion(matriz_de_elementos)
+                print("Selecciona una opción:")
+                print("1. NO evitando devolverse")
+                print("2. Evitando devolverse")
+                evitando_devolverse = seleccionar_opcion()
+                ruta_final = Amplitud.ejecutar(matriz_de_elementos, evitando_devolverse)
                 programa_en_ejecucion = False
+
+                # Imprimir la salida de manera grafica
+                opcion1 = "Busqueda no informada por Amplitud"
+                if evitando_devolverse == 1:
+                    opcion2 = "No evitando devolverse"
+                    juegoGrafico.parteGrafica(ruta_final,matriz_de_elementos,opcion1,opcion2)
+
+                if evitando_devolverse == 2:
+                    opcion2 = "Evitando devolverse"
+                    juegoGrafico.parteGrafica(ruta_final,matriz_de_elementos,opcion1,opcion2)
                 break
 
             elif opcion == 2:
