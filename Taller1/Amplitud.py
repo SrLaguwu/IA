@@ -58,7 +58,7 @@ def expandir(matriz_de_elementos, nodo):
                 else:
                     costo_ruta_ += 1
                 grogu_ = True
-            
+
             nuevo_nodo = Nodo(nodo.x + 1, nodo.y, grogu_, nave_, nodo, operador_, profundidad_, costo_ruta_)
             matriz_de_nodos.append(nuevo_nodo)
         except IndexError:
@@ -68,7 +68,7 @@ def expandir(matriz_de_elementos, nodo):
         try:
             if (nodo.y + 1 > 9):
                 IndexErrorXDXD = IndexErrorXD[0]
-                                          
+
             p = matriz_de_elementos[nodo.y + 1][nodo.x]
             grogu_ = nodo.grogu
             nave_ = nodo.nave
@@ -114,7 +114,7 @@ def expandir(matriz_de_elementos, nodo):
                 else:
                     costo_ruta_ += 1
                 grogu_ = True
-            
+
             nuevo_nodo = Nodo(nodo.x, nodo.y + 1, grogu_, nave_, nodo, operador_, profundidad_, costo_ruta_)
             matriz_de_nodos.append(nuevo_nodo)
         except IndexError:
@@ -124,7 +124,7 @@ def expandir(matriz_de_elementos, nodo):
         try:
             if (nodo.y - 1 < 0):
                 IndexErrorXDXD = IndexErrorXD[0]
-                                          
+
             p = matriz_de_elementos[nodo.y - 1][nodo.x]
             grogu_ = nodo.grogu
             nave_ = nodo.nave
@@ -170,13 +170,13 @@ def expandir(matriz_de_elementos, nodo):
                 else:
                     costo_ruta_ += 1
                 grogu_ = True
-            
+
             nuevo_nodo = Nodo(nodo.x, nodo.y - 1, grogu_, nave_, nodo, operador_, profundidad_, costo_ruta_)
             matriz_de_nodos.append(nuevo_nodo)
         except IndexError:
             a = 0
             # print("¡Error! Índice fuera de rango.")
-            
+
         try:
             if (nodo.x - 1 < 0):
                 IndexErrorXDXD = IndexErrorXD[0]
@@ -227,7 +227,7 @@ def expandir(matriz_de_elementos, nodo):
                 else:
                     costo_ruta_ += 1
                 grogu_ = True
-            
+
             nuevo_nodo = Nodo(nodo.x - 1, nodo.y, grogu_, nave_, nodo, operador_, profundidad_, costo_ruta_)
             matriz_de_nodos.append(nuevo_nodo)
         except IndexError:
@@ -250,7 +250,7 @@ def expandir(matriz_de_elementos, nodo):
         # # # #         print("xd:",matriz_de_elementos[nodo.y][nodo.x + 1])
         # # # #     else:
         # # # #         print("xd:", matriz_de_elementos[nodo.y + 1][nodo.x])
-                
+
         # # # # elif (nodo.y == 9 and nodo.x == 9):
         # # # #     if(matriz_de_elementos[nodo.y - 1][nodo.x] != 1):
         # # # #         print("xd:",matriz_de_elementos[nodo.y - 1][nodo.x])

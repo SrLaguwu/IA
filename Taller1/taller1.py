@@ -12,7 +12,7 @@ def leerArchivo(nombreArchivo):
                 # elementos = linea.strip().split()  # Suponiendo que los elementos están separados por espacios en blanco
                 elementos = [int(elemento) for elemento in linea.strip().split()]
                 matriz.append(elementos)
-            
+
     except FileNotFoundError:
         print("No se pudo abrir el archivo.")
 
