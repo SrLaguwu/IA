@@ -12,3 +12,10 @@ class Nodo:
         self.profundidad = profundidad
 
         self.costo_ruta = costo_ruta
+
+
+    def __lt__(self, otro_nodo):
+        # Compara dos nodos basándose en su costo_ruta.
+        # Devuelve True si el costo_ruta dereturn self.costo_ruta < otro.costo_ruta
+        return self.costo_ruta < otro_nodo.costo_ruta
+

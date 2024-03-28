@@ -2,12 +2,15 @@ import pygame
 
 pygame.init()
 
-def parteGrafica(ruta_final,matriz_de_elementos, opcion1, opcion2):
+def parteGrafica(ruta_final,matriz_de_elementos, opcion1, opcion2 = None):
 
     ancho = 800
     alto = 800
     pantalla = pygame.display.set_mode((ancho, alto))
-    titulo = "Algoritmo por " + str(opcion1) + " con la opcion de " + str(opcion2)
+    if(opcion2 == None):
+        titulo = "Algoritmo por " + str(opcion1)
+    else:
+        titulo = "Algoritmo por " + str(opcion1) + " con la opcion de " + str(opcion2)
     pygame.display.set_caption(titulo)
     reloj = pygame.time.Clock()
 

@@ -1,4 +1,4 @@
-import Amplitud, juegoGrafico
+import Amplitud, juegoGrafico , Costo
 
 nombreArchivo = "Prueba1.txt"
 
@@ -69,7 +69,7 @@ while programa_en_ejecucion:
                 programa_en_ejecucion = False
 
                 # Imprimir la salida de manera grafica
-                opcion1 = "Busqueda no informada por Amplitud"
+                opcion1 = "busqueda no informada por Amplitud"
                 if evitando_devolverse == 1:
                     opcion2 = "No evitando devolverse"
                     juegoGrafico.parteGrafica(ruta_final,matriz_de_elementos,opcion1,opcion2)
@@ -83,6 +83,13 @@ while programa_en_ejecucion:
                 print("\nHas seleccionado la opción de Busqueda NO Informada de Costo Uniforme")
 
                 #funcion de busqueda no informada por Costo Uniforme
+                ruta_final = Costo.ejecutar(matriz_de_elementos)
+                programa_en_ejecucion = False
+
+                # Imprimir la salida de manera grafica
+                opcion1 = "busqueda NO informada por costo uniforme"
+                juegoGrafico.parteGrafica(ruta_final,matriz_de_elementos,opcion1)
+                break
 
             elif opcion == 3:
                 print("\nHas seleccionado la opción de Busqueda NO Informada de Profundidad evitando ciclos")
