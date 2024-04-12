@@ -1,4 +1,4 @@
-import Amplitud, Costo, Avara, juegoGrafico
+import Amplitud, Costo, Profundidad, Avara, juegoGrafico
 
 nombreArchivo = "Prueba1.txt"
 
@@ -105,6 +105,13 @@ while programa_en_ejecucion:
                 print("\nHas seleccionado la opción de Busqueda NO Informada de Profundidad evitando ciclos")
 
                 # Funcion de busqueda NO informada por Profundidad evitando ciclos
+                ruta_final = Profundidad.ejecutar(matriz_de_elementos)
+                programa_en_ejecucion = False
+
+                # Imprimir la salida de manera grafica
+                opcion1 = "Busqueda NO informada por Profundidad evitando ciclos"
+                juegoGrafico.parteGrafica(ruta_final,matriz_de_elementos,opcion1)
+                break
 
             elif opcion == 4:
                 # print("\n¡Hasta luego!\n")
