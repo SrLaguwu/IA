@@ -9,6 +9,8 @@ import time
 # Se inicializan listas vacías para almacenar la cola de prioridad y el nodo meta
 cola_prioridad = []
 nodo_meta = None
+nodos_creados = 0
+profundidad_del_arbol = 0
 
 
 
@@ -155,6 +157,13 @@ def calcular_costo(elemento, nodo):
 
 def agregar_a_cola_prioridad(nuevo_nodo):
     global cola_prioridad
+    global nodos_creados
+    global profundidad_del_arbol
+
+
+    nodos_creados += 1
+    if (nuevo_nodo.profundidad > profundidad_del_arbol):
+        profundidad_del_arbol = nuevo_nodo.profundidad
 
 
     # # # Creo que todos los nodos creados se deben agregar_a_cola_prioridad a menos que se quiera evitar ciclos
@@ -181,6 +190,10 @@ def agregar_a_cola_prioridad(nuevo_nodo):
 def ejecutar(matriz_de_elementos, evitando_devolverse=2):
     global cola_prioridad
     global nodo_meta
+    global nodos_creados
+    global profundidad_del_arbol
+
+    nodos_expandidos = 0
 
     # Encontrar la posición inicial (elemento 2)
     x_ = 0
@@ -207,6 +220,8 @@ def ejecutar(matriz_de_elementos, evitando_devolverse=2):
         # Expandir el nodo y verificar si se encontró el nodo meta
         grogu_encontrado = expandir(matriz_de_elementos, nodo_a_expandir, evitando_devolverse)
 
+        nodos_expandidos += 1
+
     # Calcular el tiempo transcurrido
     fin = time.time()
     tiempo_transcurrido = fin - inicio
@@ -226,7 +241,10 @@ def ejecutar(matriz_de_elementos, evitando_devolverse=2):
         nodoXD = nodoXD.padre
 
     # Imprimir los resultados
-    print("Ruta:", ruta_encontrada)
+    # print("Nodos creados:", nodos_creados)
+    print("Nodos expandidos:", nodos_expandidos)
+    print("Profundidad del arbol:", profundidad_del_arbol)
+    # print("Ruta:", ruta_encontrada)
     print("Costo de la ruta:", nodo_meta.costo_ruta)
     print(f"Tiempo de computo: {tiempo_transcurrido:.10f}")
 

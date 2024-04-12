@@ -190,11 +190,11 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
 
     while not(grogu_encontrado):
         # print("Informacion del nodo a expandir")
-        # print("Nodo a expandir:", nodo_a_expandir)
+        # print("Nodo a expandir #" + str(nodo_a_expandir))
         # print("x:",lista_de_nodos[nodo_a_expandir].x, "| y:", lista_de_nodos[nodo_a_expandir].y)
         # print("Elemento encontrado:", matriz_de_elementos[lista_de_nodos[nodo_a_expandir].y][lista_de_nodos[nodo_a_expandir].x])
         grogu_encontrado = expandir(lista_de_nodos[nodo_a_expandir])
-        # print("Total de nodos creados despues de la expansion del nodo", str(nodo_a_expandir)+ ":", len(lista_de_nodos))
+        # print("Total de nodos creados despues de la expansion del nodo a expandir #" + str(nodo_a_expandir)+ ":", len(lista_de_nodos))
         # print("==================================================")
         # # enter = input("==================================================")
         nodo_a_expandir += 1

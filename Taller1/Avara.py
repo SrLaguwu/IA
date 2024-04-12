@@ -203,7 +203,6 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
             if elemento == 5:
                 x_meta = _x_
                 y_meta = _y_
-                print("meta:", x_meta, y_meta)
 
 
     inicio = time.time()
@@ -219,16 +218,15 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
 
 
     while not(grogu_encontrado):
-        # # print("Informacion del nodo a expandir")
-        # # print("Nodo a expandir:", nodo_a_expandir)
-        # # print("x:",lista_de_nodos[nodo_a_expandir].x, "| y:", lista_de_nodos[nodo_a_expandir].y)
-        # # print("Elemento encontrado:", matriz_de_elementos[lista_de_nodos[nodo_a_expandir].y][lista_de_nodos[nodo_a_expandir].x])
-        # grogu_encontrado = expandir(lista_de_nodos[nodo_a_expandir])
-        # # print("Total de nodos creados despues de la expansion del nodo", str(nodo_a_expandir)+ ":", len(lista_de_nodos))
-        # # print("==================================================")
-        # # # enter = input("==================================================")
         nodo_a_expandir_ref = heapq.heappop(heap_de_prioridad)[1]
+        # print("Informacion del nodo a expandir")
+        # print("Nodo a expandir #" + str(nodo_a_expandir))
+        # print("x:",nodo_a_expandir_ref.x, "| y:", nodo_a_expandir_ref.y)
+        # print("Elemento encontrado:", matriz_de_elementos[nodo_a_expandir_ref.y][nodo_a_expandir_ref.x])
         grogu_encontrado = expandir(nodo_a_expandir_ref)
+        # print("Total de nodos creados despues de la expansion del nodo a expandir #" + str(nodo_a_expandir)+ ":", len(lista_de_nodos))
+        # print("==================================================")
+        # # enter = input("==================================================")
         nodo_a_expandir += 1
 
 
@@ -250,11 +248,11 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
             break
         ruta_encontrada = nodoXD.operador + "->" + ruta_encontrada
 
-    print("Nodos creados:", nodos_creados)
+    # print("Nodos creados:", nodos_creados)
     print("Nodos expandidos:", nodo_meta + 1)
     print("Profundidad del arbol:", lista_de_nodos[nodos_creados - 1].profundidad)
-    print("Ruta:", ruta_encontrada)
-    print("Costo de la ruta:", nodo_a_expandir_ref.costo_ruta)
+    # print("Ruta:", ruta_encontrada)
+    # print("Costo de la ruta:", nodo_a_expandir_ref.costo_ruta)
     print("Tiempo de computo:", tiempo_transcurrido)
 
 
