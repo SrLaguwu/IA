@@ -1,11 +1,14 @@
 import pygame
+import os
+
+os.environ['SDL_VIDEO_CENTERED'] = '0'
 
 pygame.init()
 
 def parteGrafica(ruta_final,matriz_de_elementos, opcion1, opcion2 = None):
 
-    ancho = 800
-    alto = 800
+    ancho = 800-300
+    alto = 800-300
     pantalla = pygame.display.set_mode((ancho, alto))
     if(opcion2 == None):
         titulo = "Algoritmo por " + str(opcion1)

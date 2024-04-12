@@ -1,5 +1,7 @@
 from Nodo import Nodo
 import time
+import heapq
+
 
 
 
@@ -8,6 +10,19 @@ matriz_de_elementos = [[]]
 evitando_devolverse = 0
 lista_de_nodos = []
 nodo_a_expandir = 0
+x_meta = 0
+y_meta = 0
+heap_de_prioridad = []
+nodo_a_expandir_ref = None
+
+
+
+
+
+def h(nodo):
+    global x_meta
+    global y_meta
+    return abs(nodo.x - x_meta)+(nodo.y - y_meta)
 
 
 
@@ -118,13 +133,16 @@ def crear_nodo(nodo_padre, operador_):
 
 
 def expandir(nodo):
+    global heap_de_prioridad
+    
     if (nodo.grogu):
         return True
-
+    
     else:
         try:
             nuevo_nodo = crear_nodo(nodo, "Derecha")
             lista_de_nodos.append(nuevo_nodo)
+            heapq.heappush(heap_de_prioridad, (h(nuevo_nodo), nuevo_nodo))
         except IndexError:
             a = 0
             # print("¡Error! Índice fuera de rango.")
@@ -132,6 +150,7 @@ def expandir(nodo):
         try:
             nuevo_nodo = crear_nodo(nodo, "Abajo")
             lista_de_nodos.append(nuevo_nodo)
+            heapq.heappush(heap_de_prioridad, (h(nuevo_nodo), nuevo_nodo))
         except IndexError:
             a = 0
             # print("¡Error! Índice fuera de rango.")
@@ -139,6 +158,7 @@ def expandir(nodo):
         try:
             nuevo_nodo = crear_nodo(nodo, "Arriba")
             lista_de_nodos.append(nuevo_nodo)
+            heapq.heappush(heap_de_prioridad, (h(nuevo_nodo), nuevo_nodo))
         except IndexError:
             a = 0
             # print("¡Error! Índice fuera de rango.")
@@ -146,6 +166,7 @@ def expandir(nodo):
         try:
             nuevo_nodo = crear_nodo(nodo, "Izquierda")
             lista_de_nodos.append(nuevo_nodo)
+            heapq.heappush(heap_de_prioridad, (h(nuevo_nodo), nuevo_nodo))
         except IndexError:
             a = 0
             # print("¡Error! Índice fuera de rango.")
@@ -162,6 +183,10 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
     global evitando_devolverse
     global lista_de_nodos
     global nodo_a_expandir
+    global x_meta
+    global y_meta
+    global heap_de_prioridad
+    global nodo_a_expandir_ref
 
 
     matriz_de_elementos = matriz_de_elementos_
@@ -175,6 +200,10 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
             if elemento == 2:
                 x_ = _x_
                 y_ = _y_
+            if elemento == 5:
+                x_meta = _x_
+                y_meta = _y_
+                print("meta:", x_meta, y_meta)
 
 
     inicio = time.time()
@@ -182,6 +211,7 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
 
     nodo_inicial = Nodo(x_, y_)
     lista_de_nodos.append(nodo_inicial)
+    heapq.heappush(heap_de_prioridad, (h(nodo_inicial), nodo_inicial))
     grogu_encontrado = False
 
 
@@ -189,14 +219,16 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
 
 
     while not(grogu_encontrado):
-        # print("Informacion del nodo a expandir")
-        # print("Nodo a expandir:", nodo_a_expandir)
-        # print("x:",lista_de_nodos[nodo_a_expandir].x, "| y:", lista_de_nodos[nodo_a_expandir].y)
-        # print("Elemento encontrado:", matriz_de_elementos[lista_de_nodos[nodo_a_expandir].y][lista_de_nodos[nodo_a_expandir].x])
-        grogu_encontrado = expandir(lista_de_nodos[nodo_a_expandir])
-        # print("Total de nodos creados despues de la expansion del nodo", str(nodo_a_expandir)+ ":", len(lista_de_nodos))
-        # print("==================================================")
-        # # enter = input("==================================================")
+        # # print("Informacion del nodo a expandir")
+        # # print("Nodo a expandir:", nodo_a_expandir)
+        # # print("x:",lista_de_nodos[nodo_a_expandir].x, "| y:", lista_de_nodos[nodo_a_expandir].y)
+        # # print("Elemento encontrado:", matriz_de_elementos[lista_de_nodos[nodo_a_expandir].y][lista_de_nodos[nodo_a_expandir].x])
+        # grogu_encontrado = expandir(lista_de_nodos[nodo_a_expandir])
+        # # print("Total de nodos creados despues de la expansion del nodo", str(nodo_a_expandir)+ ":", len(lista_de_nodos))
+        # # print("==================================================")
+        # # # enter = input("==================================================")
+        nodo_a_expandir_ref = heapq.heappop(heap_de_prioridad)[1]
+        grogu_encontrado = expandir(nodo_a_expandir_ref)
         nodo_a_expandir += 1
 
 
@@ -210,7 +242,7 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
     nodos_creados = len(lista_de_nodos)
     nodo_meta = nodo_a_expandir - 1
 
-    nodoXD = lista_de_nodos[nodo_meta]
+    nodoXD = nodo_a_expandir_ref
     ruta_encontrada = nodoXD.operador
     while True:
         nodoXD = nodoXD.padre
@@ -218,11 +250,11 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
             break
         ruta_encontrada = nodoXD.operador + "->" + ruta_encontrada
 
-    # print("Nodos creados:", nodos_creados)
+    print("Nodos creados:", nodos_creados)
     print("Nodos expandidos:", nodo_meta + 1)
     print("Profundidad del arbol:", lista_de_nodos[nodos_creados - 1].profundidad)
-    # print("Ruta:", ruta_encontrada)
-    # print("Costo de la ruta:", lista_de_nodos[nodo_meta].costo_ruta)
+    print("Ruta:", ruta_encontrada)
+    print("Costo de la ruta:", nodo_a_expandir_ref.costo_ruta)
     print("Tiempo de computo:", tiempo_transcurrido)
 
 
