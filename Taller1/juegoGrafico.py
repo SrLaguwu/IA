@@ -49,8 +49,15 @@ def parteGrafica(ruta_final,matriz_de_elementos, opcion1, opcion2 = None):
     matriz_de_elementos = matriz_de_elementos
     matriz_entorno = matriz_de_elementos
 
-    personaje_x = 0
-    personaje_y = 3
+    personaje_x, personaje_y = 0, 0
+    for fila in range(len(matriz_de_elementos)):
+        for columna in range(len(matriz_de_elementos[fila])):
+            if matriz_de_elementos[fila][columna] == 2:
+                personaje_x, personaje_y = columna, fila
+                break
+        else:
+            continue
+        break
 
     entorno = ruta_final
     lista_secuencia = entorno.split("->")
