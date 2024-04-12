@@ -2,12 +2,18 @@ from Nodo import Nodo
 import time
 
 
+
+
+
 matriz_de_elementos = [[]]
 evitando_devolverse = 0
 lista_de_nodos = []
 nodo_a_expandir = 0
 lista_hijos = []
 pila_nodos = []
+
+
+
 
 
 def verificar_posicion_nodo(nodo, x_, y_):
@@ -18,6 +24,9 @@ def verificar_posicion_nodo(nodo, x_, y_):
             return True
         else:
             return False
+
+
+
 
 
 def crear_nodo(nodo_padre, operador_):
@@ -116,6 +125,9 @@ def crear_nodo(nodo_padre, operador_):
     return Nodo(nodo_padre.x + x_, nodo_padre.y + y_, grogu_, nave_, nodo_padre, operador_, profundidad_, costo_ruta_)
 
 
+
+
+
 def expandir(nodo):
     global lista_hijos
     if (nodo.grogu):
@@ -155,6 +167,9 @@ def expandir(nodo):
             # print("¡Error! Índice fuera de rango.")
       
         return False
+
+
+
 
 
 def ejecutar(matriz_de_elementos_):

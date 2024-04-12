@@ -1,6 +1,6 @@
-import Amplitud, Costo, Profundidad, Avara, juegoGrafico
+import Amplitud, Costo, Profundidad, Avara, Astar, juegoGrafico
 
-nombreArchivo = "Prueba1.txt"
+nombreArchivo = "PruebaX.txt"
 
 def leerArchivo(nombreArchivo):
     matriz = []
@@ -160,9 +160,33 @@ while programa_en_ejecucion:
                 break
 
             elif opcion == 2:
-                print("\nHas seleccionado la opción de Busqueda Informada A*")
-
                 #funcion de busqueda informada por A*
+                print("\nHas seleccionado la opción de Busqueda informada por A*")
+                print("Selecciona una opción:")
+                print("1. NO evitando devolverse")
+                print("2. Evitando devolverse")
+                # # # print("3. Regresar al menu anterior")
+
+                evitando_devolverse = seleccionar_opcion()
+                # # # if evitando_devolverse == 3 :
+                # # #     print()
+                # # #     break
+
+                ruta_final = Astar.ejecutar(matriz_de_elementos, evitando_devolverse)
+                programa_en_ejecucion = False
+
+                # Imprimir la salida de manera grafica
+                opcion1 = "Busqueda informada por A*"
+                if evitando_devolverse == 1:
+                    opcion2 = "NO evitando devolverse"
+                    juegoGrafico.parteGrafica(ruta_final,matriz_de_elementos,opcion1,opcion2)
+
+                if evitando_devolverse == 2:
+                    opcion2 = "Evitando devolverse"
+                    juegoGrafico.parteGrafica(ruta_final,matriz_de_elementos,opcion1,opcion2)
+
+                print()
+                break
 
             elif opcion == 3:
                 # print("\n¡Hasta luego!\n")
