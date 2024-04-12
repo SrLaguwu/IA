@@ -22,7 +22,7 @@ nodo_a_expandir_ref = None
 def h(nodo):
     global x_meta
     global y_meta
-    return abs(nodo.x - x_meta)+(nodo.y - y_meta)
+    return abs(nodo.x - x_meta)+abs(nodo.y - y_meta)
 
 
 

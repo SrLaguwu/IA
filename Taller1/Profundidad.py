@@ -186,11 +186,16 @@ def ejecutar(matriz_de_elementos_):
        # Inicializamos la pila con el nodo inicial
     pila_nodos = [nodo_inicial]
 
+    nodo_actual = None
+
+    nodos_expandidos = 0
+
     # Mientras no hayamos encontrado a Grogu y la pila no esté vacía
     while not grogu_encontrado and pila_nodos:
         # Tomamos el último nodo de la pila y lo expandimos
         nodo_actual = pila_nodos.pop(0)
         grogu_encontrado = expandir(nodo_actual)
+        nodos_expandidos += 1
         # Insertamos los hijos al final de la pila para la búsqueda en profundidad
         pila_nodos = lista_hijos + pila_nodos
         # Limpiamos la lista de nodos hijos para la próxima iteración
@@ -206,9 +211,8 @@ def ejecutar(matriz_de_elementos_):
 
     print("==================================================")
 
-    nodo_meta = nodo_a_expandir - 1
 
-    nodoXD = lista_de_nodos[nodo_meta]
+    nodoXD = nodo_actual
     ruta_encontrada = nodoXD.operador
     while True:
         nodoXD = nodoXD.padre
@@ -216,11 +220,16 @@ def ejecutar(matriz_de_elementos_):
             break
         ruta_encontrada = nodoXD.operador + "->" + ruta_encontrada
 
-    nodoMeta = lista_de_nodos[-1]
+    nodoMeta = nodo_actual
     ruta = []
     while nodoMeta:
         ruta.append(nodoMeta.operador)
         nodoMeta = nodoMeta.padre
+
+    profundidad_del_arbol = 0
+    for nodo_ in lista_de_nodos:
+        if (nodo_.profundidad > profundidad_del_arbol):
+            profundidad_del_arbol = nodo_.profundidad
 
     # Invierte la lista para obtener el orden correcto de los operadores
     ruta = ruta[::-1]
@@ -228,17 +237,17 @@ def ejecutar(matriz_de_elementos_):
     camino = ruta[1:]
 
     #Cantidad de nodos expandidos
-    nodos_expandidos = len(ruta)
+    nodos_expandidos = nodos_expandidos
 
 
     nodos_creados = len(lista_de_nodos)
     lista_de_xy = [(nodo.x, nodo.y) for nodo in lista_de_nodos]
     #nodos expandidos, profundidad del árbol y tiempo de cómputo
-    print("ruta encontrada: ", camino)
-    print("lista de nodos creados: ", lista_de_xy)
-    print("Cantidad de nodos creados:", nodos_creados)
-    print("Cantidad de nodos expandidos: ", nodos_expandidos)
-    print("Profundidad del arbol:", lista_de_nodos[nodos_creados - 1].profundidad)
+    # print("ruta encontrada: ", camino)
+    # print("lista de nodos creados: ", lista_de_xy)
+    # print("Cantidad de nodos creados:", nodos_creados)
+    print("Nodos expandidos:", nodos_expandidos)
+    print("Profundidad del arbol:", profundidad_del_arbol)
     print("Tiempo de computo:", tiempo_transcurrido)
 
 
