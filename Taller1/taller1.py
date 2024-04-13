@@ -1,6 +1,6 @@
 import Amplitud, Costo, Profundidad, Avara, Astar, juegoGrafico
 
-nombreArchivo = "PruebaX.txt"
+nombreArchivo = "Prueba1.txt"
 
 def leerArchivo(nombreArchivo):
     matriz = []
@@ -160,6 +160,9 @@ while programa_en_ejecucion:
                 break
 
             elif opcion == 2:
+                print("\nHas seleccionado la opción de Busqueda Informada A*")
+
+                #funcion de busqueda informada por A*
                 #funcion de busqueda informada por A*
                 print("\nHas seleccionado la opción de Busqueda informada por A*")
                 print("Selecciona una opción:")
@@ -187,6 +190,7 @@ while programa_en_ejecucion:
 
                 print()
                 break
+
 
             elif opcion == 3:
                 # print("\n¡Hasta luego!\n")
