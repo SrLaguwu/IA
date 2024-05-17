@@ -255,7 +255,7 @@ def ejecutar(matriz_de_elementos_, evitando_devolverse_):
     # print("Nodos creados:", nodos_creados)
     print("Nodos expandidos:", nodo_meta + 1)
     print("Profundidad del arbol:", lista_de_nodos[nodos_creados - 1].profundidad)
-    print("Ruta:", ruta_encontrada)
+    # print("Ruta:", ruta_encontrada)
     print("Costo de la ruta:", nodo_a_expandir_ref.costo_ruta)
     print("Tiempo de computo:", tiempo_transcurrido)
 

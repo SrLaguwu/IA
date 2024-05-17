@@ -166,19 +166,19 @@ def agregar_a_cola_prioridad(nuevo_nodo):
         profundidad_del_arbol = nuevo_nodo.profundidad
 
 
-    # # # Creo que todos los nodos creados se deben agregar_a_cola_prioridad a menos que se quiera evitar ciclos
-    # # # Pero por si acaso lo comente para que lo analicen
+    # Creo que todos los nodos creados se deben agregar_a_cola_prioridad a menos que se quiera evitar ciclos
+    # Pero por si acaso lo comente para que lo analicen
 
-    # # # # Verificar si el nodo ya existe en la cola con un costo menor
-    # # # # # # # # print("----------------------")
-    # # # # # # # # print(cola_prioridad)
-    # # # for nodo_existente in cola_prioridad:
-    # # #     if nodo_existente[1].x == nuevo_nodo.x and nodo_existente[1].y == nuevo_nodo.y:
-    # # #         if nodo_existente[1].costo_ruta <= nuevo_nodo.costo_ruta:
-    # # #             return  # No agregar el nuevo nodo
-    # # #         else:
-    # # #             cola_prioridad.remove(nodo_existente)
-    # # #             break
+    # Verificar si el nodo ya existe en la cola con un costo menor
+    # # # # # print("----------------------")
+    # # # # # print(cola_prioridad)
+    for nodo_existente in cola_prioridad:
+        if nodo_existente[1].x == nuevo_nodo.x and nodo_existente[1].y == nuevo_nodo.y:
+            if nodo_existente[1].costo_ruta <= nuevo_nodo.costo_ruta:
+                return  # No agregar el nuevo nodo
+            else:
+                cola_prioridad.remove(nodo_existente)
+                break
 
     # Agregar el nuevo nodo a la cola de prioridad, ordenado por costo
     heapq.heappush(cola_prioridad, (nuevo_nodo.costo_ruta, nuevo_nodo))
@@ -187,7 +187,7 @@ def agregar_a_cola_prioridad(nuevo_nodo):
 
 
 
-def ejecutar(matriz_de_elementos, evitando_devolverse=2):
+def ejecutar(matriz_de_elementos, evitando_devolverse):
     global cola_prioridad
     global nodo_meta
     global nodos_creados
