@@ -7,7 +7,7 @@ pygame.init()
 
 # Constantes para el tamaño
 WIDTH, HEIGHT = 800, 800
-SQUARE_SIZE = 100  # Tamaño de cada cuadrado del tablero
+SQUARE_SIZE = 100  # Tamaño de cada cuadrado del tablero 
 
 # Crear la ventana de display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
