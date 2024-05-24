@@ -20,10 +20,11 @@ class Nodo:
     # Calcula la utilidad del nodo
     def evaluar(self):
         green_count, red_count = count_colored_squares()
-        if self.turno == 0:  # Yoshi verde
-            return green_count - red_count  # Yoshi verde maximiza
-        else:
-            return red_count - green_count  # Yoshi rojo maximiza
+        movilidad_ia = len(get_knight_moves(self.yoshi_positions[1]))
+        movilidad_jugador = len(get_knight_moves(self.yoshi_positions[0]))
+
+        # Heuristica
+        return (green_count - red_count) + (movilidad_ia - movilidad_jugador)
         
     def generar_hijos(self):
         if self.es_terminal():

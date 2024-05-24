@@ -2,9 +2,6 @@
 from Nodo import Nodo
 from utils import get_knight_moves
 
-# Minimax.py
-from utils import get_knight_moves
-
 def minimax(nodo, profundidad, jugador_max):
     if profundidad == 0 or nodo.es_terminal():
         nodo.utilidad = nodo.evaluar()
@@ -20,7 +17,8 @@ def minimax(nodo, profundidad, jugador_max):
             nodo.guardar_hijo(nodo_hijo)
             eval = minimax(nodo_hijo, profundidad - 1, False)
             max_evaluacion = max(max_evaluacion, eval)
-        nodo.utilidad = max_evaluacion
+        if nodo.hijos:
+            nodo.utilidad = max_evaluacion
         return max_evaluacion
 
     else:
@@ -33,12 +31,13 @@ def minimax(nodo, profundidad, jugador_max):
             nodo.guardar_hijo(nodo_hijo)
             eval = minimax(nodo_hijo, profundidad - 1, True)
             min_evaluacion = min(min_evaluacion, eval)
-        nodo.utilidad = min_evaluacion
+        if nodo.hijos:
+            nodo.utilidad = min_evaluacion
         return min_evaluacion
+
 
 def mejor_movimiento(nodo, profundidad):
     # Defino la raíz del árbol
-    raiz = nodo
     turno = nodo.turno
     mejor_evaluacion = float('-inf') if turno == 0 else float('inf')
     mejor_mov = None
@@ -46,12 +45,15 @@ def mejor_movimiento(nodo, profundidad):
     for movimiento in get_knight_moves(nodo.yoshi_positions[turno]):
         posiciones_nuevas = list(nodo.yoshi_positions)
         posiciones_nuevas[turno] = movimiento
-        nodo_hijo = Nodo(posiciones_nuevas, 1 - turno, 1, raiz)
-        raiz.guardar_hijo(nodo_hijo)
+        nodo_hijo = Nodo(posiciones_nuevas, 1 - turno, 1, nodo)
+        nodo.guardar_hijo(nodo_hijo)
         eval = minimax(nodo_hijo, profundidad - 1, turno == 1)
 
         if (turno == 0 and eval > mejor_evaluacion) or (turno == 1 and eval < mejor_evaluacion):
             mejor_evaluacion = eval
             mejor_mov = movimiento
+
+    if mejor_mov is None and nodo.hijos:
+        mejor_mov = nodo.hijos[0].yoshi_positions[turno]    
 
     return mejor_mov

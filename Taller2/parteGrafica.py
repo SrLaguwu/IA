@@ -112,7 +112,7 @@ def main():
     turn = 0  # 0 para Yoshi verde, 1 para Yoshi rojo
     game_over = False
     winner_frames = None
-    
+
     raiz = Nodo(yoshi_positions, turn, 0)
 
     # initialize_board_colors()
@@ -121,9 +121,10 @@ def main():
     if turn == 0:
         
         ia_move = mejor_movimiento(raiz, max_depth)
-        yoshi_positions[turn] = ia_move
-        square_colors[ia_move] = GREEN
-        turn = 1 - turn
+        if ia_move:
+            yoshi_positions[turn] = ia_move
+            square_colors[ia_move] = GREEN
+            turn = 1 - turn
 
     # Bucle principal
     while True:
@@ -144,14 +145,16 @@ def main():
                     selected_yoshi = None
                     possible_moves = None
                     turn = 1 - turn  # Alternar turno
+                    raiz = Nodo(yoshi_positions, turn, 0)
+
 
                     # Movimiento de la IA
                     if not game_over and turn == 0:
-                        raiz = Nodo(yoshi_positions, turn, 0)
                         ia_move = mejor_movimiento(raiz, max_depth)
-                        yoshi_positions[turn] = ia_move
-                        square_colors[ia_move] = GREEN
-                        turn = 1 - turn
+                        if ia_move:
+                            yoshi_positions[turn] = ia_move
+                            square_colors[ia_move] = GREEN
+                            turn = 1 - turn
 
                 else:
                     selected_yoshi = None
