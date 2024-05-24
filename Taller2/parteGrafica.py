@@ -53,9 +53,11 @@ def draw_board(yoshi_positions, possible_moves=None):
     # Dibujar los Yoshis
     yoshi_verde_pos = yoshi_positions[0]
     yoshi_rojo_pos = yoshi_positions[1]
-    screen.blit(yoshi_verde, (yoshi_verde_pos[1] * SQUARE_SIZE, yoshi_verde_pos[0] * SQUARE_SIZE))
-    screen.blit(yoshi_rojo, (yoshi_rojo_pos[1] * SQUARE_SIZE, yoshi_rojo_pos[0] * SQUARE_SIZE))
-
+    if yoshi_verde_pos is not None:
+        screen.blit(yoshi_verde, (yoshi_verde_pos[1] * SQUARE_SIZE, yoshi_verde_pos[0] * SQUARE_SIZE))
+    if yoshi_rojo_pos is not None:
+        screen.blit(yoshi_rojo, (yoshi_rojo_pos[1] * SQUARE_SIZE, yoshi_rojo_pos[0] * SQUARE_SIZE))
+    
 def draw_text(screen, text, position, font_size=36):
     """Dibuja el texto en la pantalla en la posición especificada."""
     font = pygame.font.Font(None, font_size)
@@ -110,12 +112,14 @@ def main():
     turn = 0  # 0 para Yoshi verde, 1 para Yoshi rojo
     game_over = False
     winner_frames = None
+    
+    raiz = Nodo(yoshi_positions, turn, 0)
 
     # initialize_board_colors()
 
     # Movimiento inicial de la IA
     if turn == 0:
-        raiz = Nodo(yoshi_positions, turn, 0)
+        
         ia_move = mejor_movimiento(raiz, max_depth)
         yoshi_positions[turn] = ia_move
         square_colors[ia_move] = GREEN
