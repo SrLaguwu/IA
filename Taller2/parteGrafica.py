@@ -130,6 +130,14 @@ def main():
                     selected_yoshi = None
                     possible_moves = None
                     turn = 1 - turn  # Alternar turno
+                    
+                     # Movimiento de la IA
+                    if not game_over and turn == 0:
+                        ia_move = mejor_movimiento(yoshi_positions, turn, max_depth)
+                        yoshi_positions[turn] = ia_move
+                        square_colors[ia_move] = GREEN
+                        turn = 1 - turn
+
                 else:
                     selected_yoshi = None
 
