@@ -24,3 +24,14 @@ class Nodo:
             return green_count - red_count  # Yoshi verde maximiza
         else:
             return red_count - green_count  # Yoshi rojo maximiza
+        
+    def generar_hijos(self):
+        if self.es_terminal():
+            return  # No se pueden generar hijos si el nodo es terminal
+
+        movimientos_posibles = get_knight_moves(self.yoshi_positions[self.turno])
+        for movimiento in movimientos_posibles:
+            nuevas_posiciones = list(self.yoshi_positions)  # Copiar la lista de posiciones
+            nuevas_posiciones[self.turno] = movimiento  # Actualizar la posición del yoshi en turno
+            hijo = Nodo(nuevas_posiciones, 1 - self.turno, self.profundidad + 1, self)
+            self.guardar_hijo(hijo)

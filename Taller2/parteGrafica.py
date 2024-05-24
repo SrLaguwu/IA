@@ -1,7 +1,8 @@
 import pygame
 import sys
 import os
-from Minimax import mejor_movimiento
+from Nodo import Nodo
+from Minimax import mejor_movimiento, minimax
 from utils import initialize_board_colors, get_knight_moves, count_colored_squares, get_random_positions, square_colors, WHITE, GREEN, RED
 
 # Inicializar Pygame
@@ -50,8 +51,10 @@ def draw_board(yoshi_positions, possible_moves=None):
             pygame.draw.rect(screen, HIGHLIGHT, (move[1] * SQUARE_SIZE, move[0] * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
     # Dibujar los Yoshis
-    screen.blit(yoshi_verde, (yoshi_positions[0][1] * SQUARE_SIZE, yoshi_positions[0][0] * SQUARE_SIZE))
-    screen.blit(yoshi_rojo, (yoshi_positions[1][1] * SQUARE_SIZE, yoshi_positions[1][0] * SQUARE_SIZE))
+    yoshi_verde_pos = yoshi_positions[0]
+    yoshi_rojo_pos = yoshi_positions[1]
+    screen.blit(yoshi_verde, (yoshi_verde_pos[1] * SQUARE_SIZE, yoshi_verde_pos[0] * SQUARE_SIZE))
+    screen.blit(yoshi_rojo, (yoshi_rojo_pos[1] * SQUARE_SIZE, yoshi_rojo_pos[0] * SQUARE_SIZE))
 
 def draw_text(screen, text, position, font_size=36):
     """Dibuja el texto en la pantalla en la posición especificada."""
@@ -88,12 +91,17 @@ def seleccionar_dificultad():
 
 def main():
     dificultad = seleccionar_dificultad()
+    max_depth = None  # Inicializamos max_depth como None para que pueda ser asignado más adelante
     if dificultad == 1:
         max_depth = 2
     elif dificultad == 2:
         max_depth = 4
     elif dificultad == 3:
         max_depth = 6
+    else:
+        print("Dificultad inválida. Saliendo del juego.")
+        pygame.quit()
+        sys.exit()
 
     yoshi_positions = get_random_positions()
     initialize_board_colors(yoshi_positions)
@@ -107,7 +115,8 @@ def main():
 
     # Movimiento inicial de la IA
     if turn == 0:
-        ia_move = mejor_movimiento(yoshi_positions, turn, max_depth)
+        raiz = Nodo(yoshi_positions, turn, 0)
+        ia_move = mejor_movimiento(raiz, max_depth)
         yoshi_positions[turn] = ia_move
         square_colors[ia_move] = GREEN
         turn = 1 - turn
@@ -132,9 +141,10 @@ def main():
                     possible_moves = None
                     turn = 1 - turn  # Alternar turno
 
-                     # Movimiento de la IA
+                    # Movimiento de la IA
                     if not game_over and turn == 0:
-                        ia_move = mejor_movimiento(yoshi_positions, turn, max_depth)
+                        raiz = Nodo(yoshi_positions, turn, 0)
+                        ia_move = mejor_movimiento(raiz, max_depth)
                         yoshi_positions[turn] = ia_move
                         square_colors[ia_move] = GREEN
                         turn = 1 - turn
