@@ -96,13 +96,14 @@ def main():
         max_depth = 6
 
     yoshi_positions = get_random_positions()
+    initialize_board_colors(yoshi_positions)
     selected_yoshi = None
     possible_moves = None
     turn = 0  # 0 para Yoshi verde, 1 para Yoshi rojo
     game_over = False
     winner_frames = None
 
-    initialize_board_colors()
+    # initialize_board_colors()
 
     # Movimiento inicial de la IA
     if turn == 0:
@@ -130,7 +131,7 @@ def main():
                     selected_yoshi = None
                     possible_moves = None
                     turn = 1 - turn  # Alternar turno
-                    
+
                      # Movimiento de la IA
                     if not game_over and turn == 0:
                         ia_move = mejor_movimiento(yoshi_positions, turn, max_depth)
@@ -155,7 +156,7 @@ def main():
 
         # Contar casillas pintadas y mostrar texto informativo
         green_count, red_count = count_colored_squares()
-        info_text = f"Casillas Usuario: {green_count} , Casillas IA: {red_count}"
+        info_text = f"Casillas Usuario: {red_count} , Casillas IA: {green_count}"
         draw_text(screen, info_text, (10, 10))
 
         pygame.display.flip()

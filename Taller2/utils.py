@@ -13,11 +13,15 @@ RED = (255, 182, 193)    # Color rojo pastel para Yoshi rojo
 # Inicializar el diccionario de colores de casillas
 square_colors = {}
 
-def initialize_board_colors():
+def initialize_board_colors(yoshi_positions):
     """Inicializa el diccionario de colores de casillas con el patrón inicial de ajedrez."""
     for row in range(8):
         for col in range(8):
             square_colors[(row, col)] = WHITE if (row + col) % 2 == 0 else BLACK
+    
+    # Pintar la casilla inicial del Yoshi rojo
+    red_row, red_col = yoshi_positions[1]
+    square_colors[(red_row, red_col)] = RED
 
 def get_knight_moves(position):
     """Calcula los movimientos válidos en forma de 'L' desde una posición dada, excluyendo casillas bloqueadas."""
