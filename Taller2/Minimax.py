@@ -1,4 +1,4 @@
-from Nodo import Nodo 
+from Nodo import *
 import parteGrafica as PG
 
 #No olvidar definir la profundidad dependiendo de el nivel de dificultad escogido
@@ -13,7 +13,7 @@ def minimax(nodo, profundidad, jugador_max):
         # Para cada movimiento valido del Yoshi que tiene el turno
         for move in PG.get_knight_moves(nodo.yoshi_positions[nodo.turno]):
             posiciones_nuevas = list(nodo.yoshi_positions)
-            posiciones_nuevas[nodo.turn] = move #Cambio la posicion para el jugador con el turno
+            posiciones_nuevas[nodo.turno] = move #Cambio la posicion para el jugador con el turno
             nodo_hijo = Nodo(posiciones_nuevas, 1 - nodo.turno, nodo.profundidad +1, nodo)
             nodo.guardar_hijo(nodo_hijo)
             eval = minimax(nodo_hijo, profundidad - 1, False)
@@ -43,15 +43,15 @@ def mejor_movimiento(yoshi_positions, turno, profundidad):
     mejor_movimiento = None
 
     for movimiento in PG.get_knight_moves(yoshi_positions[turno]):
-        nuevas_posiciones = list(nuevas_posiciones)
-        nuevas_posiciones[turno]= movimiento
-        nodo_hijo = Nodo(nuevas_posiciones, 1 - turno, 1, raiz)
+        posiciones_nuevas = list(yoshi_positions)
+        posiciones_nuevas[turno]= movimiento
+        nodo_hijo = Nodo(posiciones_nuevas, 1 - turno, 1, raiz)
         raiz.guardar_hijo(nodo_hijo) 
         eval = minimax(nodo_hijo, profundidad -1, turno == 1)
         
-        if(turno == 0 and eval> mejor_evaluacion) or (turno ==1 and eval< mejor_evaluacion):
+        if(turno == 0 and eval > mejor_evaluacion) or (turno == 1 and eval < mejor_evaluacion):
             mejor_evaluacion = eval 
             mejor_movimiento = movimiento
-            
+
     return mejor_movimiento 
 

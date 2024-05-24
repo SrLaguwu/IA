@@ -1,4 +1,4 @@
-import parteGrafica as PG
+from parteGrafica import *
 
 class Nodo:
     def __init__(self,yoshi_positions, turno, profundidad, padre=None):
@@ -14,11 +14,11 @@ def guardar_hijo(self, nodo_hijo):
 
 # Revisa si es el nodo terminal, es decir que no haya movimientos posibles para el turno actual
 def es_terminal(self):
-    return not PG.get_knight_moves(self.yoshi_positions[self.turno])
+    return not get_knight_moves(self.yoshi_positions[self.turno])
 
 # Calcula la utilidad del nodo
 def evaluar(self):
-    green_count, red_count = PG.count_colored_squares()
+    green_count, red_count = count_colored_squares()
     if self.turno == 0:#Yoshi verde
         return green_count - red_count # Yoshi verde maximiza
     else: 
