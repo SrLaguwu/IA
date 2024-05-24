@@ -9,18 +9,18 @@ class Nodo:
         self.hijos = [] #Lista de hijos
         self.utilidad = None # Puntaje del nodo que se calcula con la func de evaluacion
 
-def guardar_hijo(self, nodo_hijo):
-    self.hijos.append(nodo_hijo)
+    def guardar_hijo(self, nodo_hijo):
+        self.hijos.append(nodo_hijo)
 
-# Revisa si es el nodo terminal, es decir que no haya movimientos posibles para el turno actual
-def es_terminal(self):
-    return not get_knight_moves(self.yoshi_positions[self.turno])
+    # Revisa si es el nodo terminal, es decir que no haya movimientos posibles para el turno actual
+    def es_terminal(self):
+        return not get_knight_moves(self.yoshi_positions[self.turno])
 
-# Calcula la utilidad del nodo
-def evaluar(self):
-    green_count, red_count = count_colored_squares()
-    if self.turno == 0:#Yoshi verde
-        return green_count - red_count # Yoshi verde maximiza
-    else: 
-        return red_count - green_count # Yoshi rojo maximiza
+    # Calcula la utilidad del nodo
+    def evaluar(self):
+        green_count, red_count = count_colored_squares()
+        if self.turno == 0:#Yoshi verde
+            return green_count - red_count # Yoshi verde maximiza
+        else: 
+            return red_count - green_count # Yoshi rojo maximiza
 
