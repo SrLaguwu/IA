@@ -19,7 +19,7 @@ def es_terminal(self):
 # Calcula la utilidad del nodo
 def evaluar(self):
     green_count, red_count = PG.count_colored_squares()
-    if self.turno == 0:
+    if self.turno == 0:#Yoshi verde
         return green_count - red_count # Yoshi verde maximiza
     else: 
         return red_count - green_count # Yoshi rojo maximiza
