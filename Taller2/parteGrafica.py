@@ -111,7 +111,35 @@ def play_animation(screen, frames, duration):
                     pygame.quit()
                     sys.exit()
 
+def seleccionar_dificultad():
+    
+    while True:
+        print("Seleccione la dificultad:")
+        print("1. Principiante (arbol de profundidad 2)")
+        print("2. Amateur (arbol de profundidad 4)")
+        print("3. Experto (arbol de profundidad 6)")
+        choice = input("Ingrese el número de la dificultad deseada: ")
+        if choice in ["1", "2", "3"]:
+            return int(choice)
+        else:
+            print("Selección inválida. Por favor, intente de nuevo.")
+
+
 def main():
+
+    dificuldad = seleccionar_dificultad()
+    if dificuldad == 1:
+        # Aqui un metodo algoritmo_minimax que ejecute el algoritmo y tenga de parametro lo de la profundidad del arbol
+        max_depth = 2
+
+    elif dificuldad == 2:
+        # Aquí x2
+        max_depth = 4
+        
+    elif dificuldad == 3:
+        # Aquí x3
+        max_depth = 6
+
     yoshi_positions = get_random_positions()
     selected_yoshi = None
     possible_moves = None
