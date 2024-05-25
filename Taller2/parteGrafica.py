@@ -5,16 +5,9 @@ from Nodo import Nodo
 from Minimax import mejor_movimiento, minimax
 from utils import initialize_board_colors, get_knight_moves, count_colored_squares, get_random_positions, square_colors, WHITE, GREEN, RED
 
-# Inicializar Pygame
-pygame.init()
-
 # Constantes para el tamaño
 WIDTH, HEIGHT = 600, 600
 SQUARE_SIZE = 75  # Tamaño de cada cuadrado del tablero
-
-# Crear la ventana de display
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Tablero de Ajedrez con Yoshis")
 
 # Colores
 BLACK = (239, 239, 239)
@@ -38,7 +31,7 @@ def load_animation_frames(folder):
 ganaste_frames = load_animation_frames('images/ganaste_frames')
 perdiste_frames = load_animation_frames('images/perdiste_frames')
 
-def draw_board(yoshi_positions, possible_moves=None):
+def draw_board(screen, yoshi_positions, possible_moves=None):
     """Dibuja un tablero de ajedrez 8x8 con los Yoshis y las casillas coloreadas."""
     for row in range(8):
         for col in range(8):
@@ -102,8 +95,14 @@ def main():
         max_depth = 6
     else:
         print("Dificultad inválida. Saliendo del juego.")
-        pygame.quit()
         sys.exit()
+    
+    # Inicializar Pygame
+    pygame.init()
+
+    # Crear la ventana de display
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Tablero de Ajedrez con Yoshis")
 
     yoshi_positions = get_random_positions()
     initialize_board_colors(yoshi_positions)
@@ -115,13 +114,8 @@ def main():
 
     raiz = Nodo(yoshi_positions, turn, 0)
 
-    # initialize_board_colors()
-
-    square_colors[yoshi_positions[0]] = GREEN
-
     # Movimiento inicial de la IA
     if turn == 0:
-        
         ia_move = mejor_movimiento(raiz, max_depth)
         if ia_move:
             yoshi_positions[turn] = ia_move
@@ -149,7 +143,6 @@ def main():
                     turn = 1 - turn  # Alternar turno
                     raiz = Nodo(yoshi_positions, turn, 0)
 
-
                     # Movimiento de la IA
                     if not game_over and turn == 0:
                         ia_move = mejor_movimiento(raiz, max_depth)
@@ -171,7 +164,7 @@ def main():
                     game_over = True
                     winner_frames = ganaste_frames if turn == 1 else perdiste_frames
 
-        draw_board(yoshi_positions, possible_moves)
+        draw_board(screen, yoshi_positions, possible_moves)
 
         # Contar casillas pintadas y mostrar texto informativo
         green_count, red_count = count_colored_squares()
