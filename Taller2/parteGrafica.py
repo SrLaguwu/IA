@@ -117,6 +117,8 @@ def main():
 
     # initialize_board_colors()
 
+    square_colors[yoshi_positions[0]] = GREEN
+
     # Movimiento inicial de la IA
     if turn == 0:
         
